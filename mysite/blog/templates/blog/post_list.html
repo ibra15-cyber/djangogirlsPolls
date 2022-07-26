@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% comment %} this is going to make the page dynamic, based on the input by a user to the db {% endcomment %}
+{% comment %} we tape into the database and call the date, tilte and test in our html skeleton {% endcomment %}
 <html>
     <head>
         <title>Django Girls blog</title>
@@ -8,16 +10,13 @@
             <h1><a href="/">Django Girls Blog</a></h1>
         </header>
 
+        {% comment %} for ever post in the db which we tapped in the views.py make this article {% endcomment %}
+        {% for post in posts %} 
         <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My first post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      
-
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
+            <time>published: {{post.published_date }}</time>
+            <h2><a href="">{{post.title}}</a></h2>
+            <p>{{post.text | linebreaks }}</p>
         </article>
+        {% endfor %}
     </body>
 </html>
